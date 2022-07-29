@@ -12,7 +12,7 @@ class UserSchema {
         type: String,
         required: true,
       },
-      userName: {
+      username: {
         type: String,
         required: true,
       },
