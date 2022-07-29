@@ -2,10 +2,11 @@ import bcrypt from "bcrypt";
 
 import { IPasswordEncoder } from "../IPasswordEncoder";
 
-class EncoderBCrypt implements IPasswordEncoder {
+class PasswordEncoder implements IPasswordEncoder {
   async encode(password: string): Promise<string> {
     const saltRound = 10;
     const encodedPassword = await bcrypt.hash(password, saltRound);
+
     return encodedPassword;
   }
   async checksPassword(
@@ -19,4 +20,4 @@ class EncoderBCrypt implements IPasswordEncoder {
     return isTheSamePassword;
   }
 }
-export { EncoderBCrypt };
+export { PasswordEncoder };
