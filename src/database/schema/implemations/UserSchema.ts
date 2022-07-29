@@ -1,7 +1,10 @@
 import mongoose from "mongoose";
 
-class UserSchema {
+import { IUserSchema } from "../IUserSchema";
+
+class UserSchema implements IUserSchema {
   private userSchema: mongoose.Schema;
+  private name = "User";
   constructor() {
     this.userSchema = new mongoose.Schema({
       email: {
@@ -20,6 +23,9 @@ class UserSchema {
   }
   getSchema(): mongoose.Schema {
     return this.userSchema;
+  }
+  getName(): string {
+    return this.name;
   }
 }
 
