@@ -7,7 +7,13 @@ class CreateUserService {
     this.userRepository = userRepository;
   }
   async execute({ email, username, password }: IUserDTO) {
-    this.userRepository.create({ email, username, password });
+    const isUserAlreadyInserted = await this.userRepository.checksIfUserExists(
+      email
+    );
+    if (isUserAlreadyInserted) {
+      throw new Error("User already exists");
+    }
+    await this.userRepository.create({ email, username, password });
   }
 }
 export { CreateUserService };
