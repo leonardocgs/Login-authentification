@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const DATABASE_USERNAME = process.env.DB_USER;
-const DATABASE_PASSWORD = process.env.DB_PASSWORD;
+const { DB_USER, DB_PASSWORD, SECRET } = process.env;
 
-export { DATABASE_USERNAME, DATABASE_PASSWORD };
+export { DB_USER, DB_PASSWORD, SECRET };

@@ -27,8 +27,9 @@ class UserRepository implements IUserRepository {
       email: emailSearch,
     }).exec();
     if (userFound) {
-      const { username, email, password } = userFound;
-      const user = new User(username, email, password);
+      const { username, email, password, _id } = userFound;
+      const id = _id.toString();
+      const user = new User(username, email, password, id);
       return user;
     }
     throw new Error("User not found");

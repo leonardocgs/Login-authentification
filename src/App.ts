@@ -10,7 +10,7 @@ class App {
 
   private setMiddlewares(): void {
     this.app.use(express.json());
-    this.app.use("/user/create", userRouter);
+    this.app.use("/user", userRouter);
   }
 
   start(port: number): void {
