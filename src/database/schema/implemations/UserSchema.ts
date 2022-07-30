@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
+import { IUserDTO } from "../../../api/DTO/IUserDTO";
 import { IUserSchema } from "../IUserSchema";
 
 class UserSchema implements IUserSchema {
-  private userSchema: mongoose.Schema;
+  private userSchema: mongoose.Schema<IUserDTO>;
   private name = "User";
   constructor() {
     this.userSchema = new mongoose.Schema({

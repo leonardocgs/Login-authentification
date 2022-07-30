@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-import { DB_USER, DB_PASSWORD } from "../config/database";
 import App from "./App";
+import { DB_USER, DB_PASSWORD } from "./config/database";
 
 const main = async () => {
   const dbUri = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@auth-node.eatqmva.mongodb.net/?retryWrites=true&w=majority`;

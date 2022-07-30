@@ -6,7 +6,7 @@ import { User } from "../../models/User";
 import { IUserRepository } from "../IUserRepository";
 
 class UserRepository implements IUserRepository {
-  private UserModel;
+  private UserModel: mongoose.Model<IUserDTO>;
   private UserSchema: IUserSchema;
   constructor(userSchema: IUserSchema) {
     this.UserSchema = userSchema;
@@ -21,6 +21,9 @@ class UserRepository implements IUserRepository {
   async create({ email, username, password }: IUserDTO) {
     const UserDocument = new this.UserModel({ email, username, password });
     await UserDocument.save();
+  }
+  async deleteById(userId: string) {
+    await this.UserModel.deleteOne({ _id: userId });
   }
   async findByEmail(emailSearch: string): Promise<User> {
     const userFound = await this.UserModel.findOne({

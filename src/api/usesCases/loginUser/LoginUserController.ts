@@ -5,6 +5,7 @@ import { LoginUserService } from "./LoginUserService";
 class LoginUserController {
   constructor(private loginUserService: LoginUserService) {}
   async handle(request: Request, response: Response) {
+    console.log("Entrou aqui no controller");
     const { email, password } = request.body;
     try {
       const jwtToken = await this.loginUserService.execute({ email, password });

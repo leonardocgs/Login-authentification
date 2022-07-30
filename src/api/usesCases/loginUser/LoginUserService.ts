@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
 
-import { SECRET } from "../../../../config/database";
+import { SECRET } from "../../../config/database";
 import { ILoginDTO } from "../../DTO/ILoginDTO";
 import { IPasswordEncoder } from "../../Encoders/IPasswordEncoder";
 import { IUserRepository } from "../../repositories/IUserRepository";
