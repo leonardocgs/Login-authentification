@@ -25,6 +25,9 @@ class UserRepository implements IUserRepository {
   async deleteById(userId: string) {
     await this.UserModel.deleteOne({ _id: userId });
   }
+  async updateById(userId: string, user: Partial<IUserDTO>) {
+    await this.UserModel.updateOne({ _id: userId }, user);
+  }
   async findByEmail(emailSearch: string): Promise<User> {
     const userFound = await this.UserModel.findOne({
       email: emailSearch,

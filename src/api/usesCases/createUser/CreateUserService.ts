@@ -1,3 +1,4 @@
+import { validatePropertyType } from "../../../util/object";
 import { IUserDTO } from "../../DTO/IUserDTO";
 import { IPasswordEncoder } from "../../Encoders/IPasswordEncoder";
 import { IUserRepository } from "../../repositories/IUserRepository";
@@ -15,6 +16,14 @@ class CreateUserService {
   async execute({ email, username, password }: IUserDTO) {
     const isUserAlreadyInserted = await this.userRepository.checksIfUserExists(
       email
+    );
+    validatePropertyType(
+      {
+        email: "string",
+        username: "string",
+        password: "string",
+      },
+      { email, username, password }
     );
     if (isUserAlreadyInserted) {
       throw new Error("User already exists");

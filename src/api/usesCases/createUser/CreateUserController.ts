@@ -9,6 +9,7 @@ class CreateUserController {
   }
   async handle(request: Request, response: Response) {
     const { email, username, password } = request.body;
+
     try {
       await this.createUserService.execute({ email, username, password });
       response.status(201).json({ message: "User created!" });

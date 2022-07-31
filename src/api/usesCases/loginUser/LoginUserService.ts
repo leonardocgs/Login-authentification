@@ -1,6 +1,7 @@
 import jsonwebtoken from "jsonwebtoken";
 
 import { SECRET } from "../../../config/database";
+import { validatePropertyType } from "../../../util/object";
 import { ILoginDTO } from "../../DTO/ILoginDTO";
 import { IPasswordEncoder } from "../../Encoders/IPasswordEncoder";
 import { IUserRepository } from "../../repositories/IUserRepository";
@@ -14,6 +15,14 @@ class LoginUserService {
     email,
     password: requestPassword,
   }: ILoginDTO): Promise<string> {
+    validatePropertyType(
+      {
+        email: "string",
+
+        requestPassword: "string",
+      },
+      { email, requestPassword }
+    );
     const isEmailCorrect = await this.userRepository.checksIfUserExists(email);
 
     if (!isEmailCorrect) {
@@ -26,6 +35,7 @@ class LoginUserService {
       requestPassword,
       databasePassword
     );
+
     if (!isPasswordCorrect) {
       throw new Error("The Email or password is not correct");
     }
